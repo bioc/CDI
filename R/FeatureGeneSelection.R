@@ -95,7 +95,8 @@ one_batch_feature_gene_rank <- function(
 #' 
 #' @importFrom matrixStats rowVars rowMins
 #' @importFrom SeuratObject AddMetaData
-#' @importFrom Seurat CreateSeuratObject NormalizeData FindVariableFeatures GetAssayData FetchData VariableFeatures
+#' @importFrom Seurat CreateSeuratObject NormalizeData FindVariableFeatures FetchData VariableFeatures
+#' @importFrom SeuratObject GetAssayData
 #' @importFrom SingleCellExperiment SingleCellExperiment rowData colData
 #' @importFrom SummarizedExperiment assays
 #' @importFrom methods is
