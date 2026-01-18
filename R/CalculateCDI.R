@@ -351,9 +351,9 @@ size_factor <- function(
 #' method for each label set. The length of the vector needs to be the same 
 #' as the number of columns in cand_lab_df.
 #' 
-#' @param BPPARAM A \code{\link{BiocParallelParam}} object from the BiocParallel 
+#' @param BPPARAM A \code{\link[BiocParallel]{BiocParallelParam}} object from the BiocParallel 
 #' package. By specifying this argument, users can control over how to perform 
-#' the parallel computing. Default is \code{\link{SerialParam}} which uses a 
+#' the parallel computing. Default is \code{\link[BiocParallel]{SerialParam}} which uses a 
 #' single core.
 #'        
 #' @importFrom SingleCellExperiment SingleCellExperiment rowData colData
@@ -361,7 +361,8 @@ size_factor <- function(
 #' @importFrom BiocParallel SerialParam bplapply
 #' @importFrom stats nlminb pchisq var
 #' @importFrom matrixStats rowMedians
-#' @importFrom Seurat GetAssayData FetchData
+#' @importFrom SeuratObject GetAssayData
+#' @importFrom Seurat FetchData
 #' @importFrom methods is
 #' 
 #' @return calculate_CDI returns a data frame with 5 columns. The columns are 
