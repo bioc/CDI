@@ -9,8 +9,8 @@
 #' @usage data(one_batch_matrix)
 #' 
 #' @format one_batch_matrix is a matrix with 3,000 genes (rows) and 2,000 cells (columns). 
-#' The rows are named with g1, g2, ..., g3000 representing gene 1 to gene 3000; 
-#' the columns are named with rc1, rc2, ..., rc2000 representing raw count 1 to 
+#' The rows are named with g1, g2, \dots, g3000 representing gene 1 to gene 3000; 
+#' the columns are named with rc1, rc2, \dots, rc2000 representing raw count 1 to 
 #' raw count 2000. 
 #' 
 #' @note
@@ -53,7 +53,7 @@
 #' This is the label sets correspond to the cells in the one_batch_matrix. 
 #' Cells were clustered by K-Means on first 200 PCs and Seurat v3.1.5 
 #' with 2000 (default) feature genes. The number of clusters are set to 
-#' be {2,3,..., 7}. 
+#' be \{2,3,\dots, 7\}. 
 #' The code simulating this vector can be found in data-raw/one_batch_simulation.R.
 #'
 #' @docType data
@@ -138,7 +138,7 @@
 #' Cells in two batches of the two_batch_matrix was first integrated by Seurat v4. 
 #' The dataset after integration was then clustered by K-Means on first 200 PCs 
 #' and Seurat with 2000 (default) feature genes.
-#' The number of clusters are set to be {2,3,..., 10}. 
+#' The number of clusters are set to be \{2,3,\dots, 10\}. 
 #' The code simulating this vector can be found in data-raw/two_batch_simulation.R.
 #' 
 #' @docType data

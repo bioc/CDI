@@ -35,7 +35,7 @@
 #'
 #' @importFrom methods is
 #' @importFrom SummarizedExperiment assays
-#' @importFrom SeuratObject GetAssayData Assays DefaultAssay
+#' @importFrom SeuratObject Assays DefaultAssay GetAssayData 
 #' @importFrom Seurat FetchData
 #' @noRd
 extract_count <- function(X, count_slot = NULL) {
@@ -79,29 +79,31 @@ extract_count <- function(X, count_slot = NULL) {
     layer_or_slot <- count_slot
   }
 
-  ga_formals <- names(formals(SeuratObject::GetAssayData))
-
+    # CHANGED: don't rely on formals(GetAssayData()) (generic may not list `layer`)
+  # Instead, try `layer=` first; if not supported, fall back to `slot=`.
   gcmat <- tryCatch(
-    {
-      if ("layer" %in% ga_formals) {
-        # SeuratObject v5
-        SeuratObject::GetAssayData(object = X, assay = assay_use, layer = layer_or_slot)
-      } else {
-        # SeuratObject v4 and earlier
-        SeuratObject::GetAssayData(object = X, assay = assay_use, slot = layer_or_slot)
-      }
+  	{
+      SeuratObject::GetAssayData(object = X, assay = assay_use, layer = layer_or_slot)
     },
-    error = function(e) {
-      stop(
-        "Failed to extract counts from Seurat object. ",
-        "Tried assay='", assay_use, "' and ",
-        if ("layer" %in% ga_formals) "layer" else "slot",
-        "='", layer_or_slot, "'. ",
-        "Original error: ", conditionMessage(e),
-        call. = FALSE
+    error = function(e_layer) {
+      # If `layer` truly isn't supported (old SeuratObject), try slot=
+      tryCatch(
+        {
+          SeuratObject::GetAssayData(object = X, assay = assay_use, slot = layer_or_slot)
+        },
+        error = function(e_slot) {
+          stop(
+            "Failed to extract counts from Seurat object. ",
+            "Tried assay='", assay_use, "' with layer='", layer_or_slot, "' then slot='", layer_or_slot, "'. ",
+            "Layer error: ", conditionMessage(e_layer), " ",
+            "Slot error: ", conditionMessage(e_slot),
+            call. = FALSE
+          )
+        }
       )
     }
   )
+
 
   return(as.matrix(gcmat))
 }
