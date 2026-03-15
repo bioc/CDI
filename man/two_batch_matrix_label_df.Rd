@@ -17,7 +17,7 @@ his is the label sets correspond to the cells in the two_batch_matrix.
 Cells in two batches of the two_batch_matrix was first integrated by Seurat v4. 
 The dataset after integration was then clustered by K-Means on first 200 PCs 
 and Seurat with 2000 (default) feature genes.
-The number of clusters are set to be \{2,3,\dots, 10\}. 
+The number of clusters are set to be 2 to 10. 
 The code simulating this vector can be found in data-raw/two_batch_simulation.R.
 }
 \keyword{datasets}

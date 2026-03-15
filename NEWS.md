@@ -15,4 +15,6 @@
 
 * Revised according to comments from Luke. The revision mainly focuses on inputing different types of inputs (matrix, Seurat object, and SingleCellExperiment object). Submitted to Bioconductor.
 
-## Package accepted by Bioconductor (2023-06-30)
+## CDI 1.9.0
+
+* Package accepted by Bioconductor (2023-06-30)

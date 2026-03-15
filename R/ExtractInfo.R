@@ -81,28 +81,39 @@ extract_count <- function(X, count_slot = NULL) {
 
     # CHANGED: don't rely on formals(GetAssayData()) (generic may not list `layer`)
   # Instead, try `layer=` first; if not supported, fall back to `slot=`.
-  gcmat <- tryCatch(
-  	{
-      SeuratObject::GetAssayData(object = X, assay = assay_use, layer = layer_or_slot)
-    },
-    error = function(e_layer) {
-      # If `layer` truly isn't supported (old SeuratObject), try slot=
-      tryCatch(
-        {
-          SeuratObject::GetAssayData(object = X, assay = assay_use, slot = layer_or_slot)
-        },
-        error = function(e_slot) {
-          stop(
-            "Failed to extract counts from Seurat object. ",
-            "Tried assay='", assay_use, "' with layer='", layer_or_slot, "' then slot='", layer_or_slot, "'. ",
-            "Layer error: ", conditionMessage(e_layer), " ",
-            "Slot error: ", conditionMessage(e_slot),
-            call. = FALSE
-          )
-        }
-      )
-    }
-  )
+    gcmat <- tryCatch(
+	    {
+	      # SeuratObject v5 and later
+	      SeuratObject::GetAssayData(
+	        object = X,
+	        assay = assay_use,
+	        layer = layer_or_slot
+	      )
+	    },
+	    error = function(e_layer) {
+	      # Fall back only for older SeuratObject versions that still use slot=
+	      tryCatch(
+	        {
+	          SeuratObject::GetAssayData(
+	            object = X,
+	            assay = assay_use,
+	            slot = layer_or_slot
+	          )
+	        },
+	        error = function(e_slot) {
+	          stop(
+	            "Failed to extract counts from Seurat object. ",
+	            "Tried assay='", assay_use,
+	            "' with layer='", layer_or_slot,
+	            "' and slot='", layer_or_slot, "'. ",
+	            "Layer error: ", conditionMessage(e_layer), " ",
+	            "Slot error: ", conditionMessage(e_slot),
+	            call. = FALSE
+	          )
+	        }
+	      )
+	    }
+    )
 
 
   return(as.matrix(gcmat))
