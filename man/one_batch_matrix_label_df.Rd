@@ -15,7 +15,7 @@ data(one_batch_matrix_label_df)
 This is the label sets correspond to the cells in the one_batch_matrix. 
 Cells were clustered by K-Means on first 200 PCs and Seurat v3.1.5 
 with 2000 (default) feature genes. The number of clusters are set to 
-be {2,3,..., 7}. 
+be 2 to 7. 
 The code simulating this vector can be found in data-raw/one_batch_simulation.R.
 }
 \keyword{datasets}
