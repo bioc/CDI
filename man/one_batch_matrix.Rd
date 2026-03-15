@@ -6,8 +6,8 @@
 \title{Simulated count matrix from one batch}
 \format{
 one_batch_matrix is a matrix with 3,000 genes (rows) and 2,000 cells (columns). 
-The rows are named with g1, g2, ..., g3000 representing gene 1 to gene 3000; 
-the columns are named with rc1, rc2, ..., rc2000 representing raw count 1 to 
+The rows are named with g1, g2, \dots, g3000 representing gene 1 to gene 3000; 
+the columns are named with rc1, rc2, \dots, rc2000 representing raw count 1 to 
 raw count 2000.
 }
 \usage{

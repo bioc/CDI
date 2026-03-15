@@ -77,9 +77,9 @@ NB model will be fitted. Otherwise, a batch-common NB model will be fitted.}
 method for each label set. The length of the vector needs to be the same 
 as the number of columns in cand_lab_df.}
 
-\item{BPPARAM}{A \code{\link{BiocParallelParam}} object from the BiocParallel 
+\item{BPPARAM}{A \code{\link[BiocParallel]{BiocParallelParam}} object from the BiocParallel 
 package. By specifying this argument, users can control over how to perform 
-the parallel computing. Default is \code{\link{SerialParam}} which uses a 
+the parallel computing. Default is \code{\link[BiocParallel]{SerialParam}} which uses a 
 single core.}
 }
 \value{
